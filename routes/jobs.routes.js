@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const jobControllers = require("../controllers/job.controllers");
 
-router.get("/", (req, res) => {
-  res.json({ message: "voici les demandes de missions !!!" });
-});
+router.get("/", jobControllers.getAllJobs);
 
-router.post("/", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
+router.post("/", jobControllers.createJobOpen);
 
 module.exports = router;

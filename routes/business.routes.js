@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const businessControllers = require("../controllers/business.controllers");
 
-router.get("/", (req, res) => {
-  res.json({ message: "voici les prise de contact pour un profil !!!!" });
-});
+router.get("/", businessControllers.getBusinessRequests);
 
-router.post("/", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
+router.post("/", businessControllers.createBusinessRequest);
 
 module.exports = router;

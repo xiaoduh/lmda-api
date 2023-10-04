@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const careerControllers = require("../controllers/career.controllers");
 
-router.get("/", (req, res) => {
-  res.json({ message: "voici les candidatures spontannées !!!" });
-});
+router.get("/", careerControllers.getCareerRequests);
 
-router.post("/", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
+router.post("/", careerControllers.createCareerRequest);
 
 module.exports = router;

@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const userControllers = require("../controllers/user.controller");
 
-router.get("/", (req, res) => {
-  res.json({ message: "voici les profils référencés !!!" });
-});
+router.get("/", userControllers.getAllUsers);
 
-router.post("/", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
+router.post("/", userControllers.addNewUser);
 
 module.exports = router;

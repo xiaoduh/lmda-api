@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const subControllers = require("../controllers/subscriber.controllers");
 
-router.get("/", (req, res) => {
-  res.json({ message: "voici les abonnées à la liste de dif !!!" });
-});
+router.get("/", subControllers.getAllSubscribers);
 
-router.post("/", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
+router.post("/", subControllers.addNewSubscriber);
 
 module.exports = router;
