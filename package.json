@@ -7,9 +7,7 @@
     "node": ">=14.20.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "intall && build",
-    "server": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
