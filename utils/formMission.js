@@ -19,9 +19,9 @@ const formMission = async (subject, email, phone, content) => {
       <p>Vous avez une nouvelle mission :</p>
       <ul>
         <li>Recherche: ${subject}</li>
-        <li>Email du candidat: ${email}</li>
-        <li>Téléphone du candidat: ${phone}</li>
-        <li>Message du candidat: ${content}</li>
+        <li>Email du demandeur: ${email}</li>
+        <li>Téléphone du demandeur: ${phone}</li>
+        <li>Message du demandeur: ${content}</li>
       </ul>
       <p>Keep pushing ! 💪</p>
       </body>`,
