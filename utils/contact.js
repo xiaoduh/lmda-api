@@ -12,7 +12,7 @@ const contact = async (profil, subject, email, phone, context) => {
 
     await transporter.sendMail({
       from: "no-reply lambda",
-      to: "clement.lidar@gmail.com",
+      to: "clement.lidar@gmail.com, abidimedamine@gmail.com",
       subject: `Vous avez une nouvelle demande d'information pour le profil ${profil} 🥳`,
       html: `<body>
       <p>Bonjour 👋,<br><br></p>
