@@ -33,14 +33,14 @@ module.exports.createApplianceJob = async (req, res) => {
   try {
     const newApplianceEntry = await ApplianceModel.create({
       jobId: req.body.jobId,
-      subject: req.body.subject,
+      name: req.body.name,
       email: req.body.email,
       phone_number: req.body.phone_number,
       motivation: req.body.motivation,
     });
     applianceJob(
       req.body.jobId,
-      req.body.subject,
+      req.body.name,
       req.body.email,
       req.body.phone_number,
       req.body.motivation
