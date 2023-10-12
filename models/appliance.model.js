@@ -6,7 +6,7 @@ const applianceSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    subject: {
+    name: {
       type: String,
       required: true,
     },
