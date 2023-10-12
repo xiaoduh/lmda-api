@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
-const businessSchema = mongoose.Schema(
+const applianceSchema = mongoose.Schema(
   {
+    jobId: {
+      type: String,
+      required: true,
+    },
     subject: {
       type: String,
       required: true,
@@ -14,7 +18,7 @@ const businessSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    context: {
+    motivation: {
       type: String,
       required: true,
     },
@@ -24,4 +28,4 @@ const businessSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("business", businessSchema);
+module.exports = mongoose.model("appliance", applianceSchema);

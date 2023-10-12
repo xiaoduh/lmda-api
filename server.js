@@ -8,7 +8,7 @@ const subscribers = require("./routes/subscribers.routes");
 const users = require("./routes/users.routes");
 const jobs = require("./routes/jobs.routes");
 const career = require("./routes/career.routes");
-const business = require("./routes/business.routes");
+const mission = require("./routes/mission.routes");
 
 const corsOptions = {
   origin: "*",
@@ -42,7 +42,7 @@ app.use("/jobs", jobs);
 app.use("/career", career);
 
 //Business routes
-app.use("/business", business);
+app.use("/mission", mission);
 
 // Lancement du server
 app.listen(port, () => console.log("server is running at port " + port));

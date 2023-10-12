@@ -1,12 +1,12 @@
 const SubscriberModel = require("../models/subscriber.model");
-const sender = require("../utils/sender");
+const subscriber = require("../utils/subscriber");
 
 module.exports.addNewSubscriber = async (req, res) => {
   try {
     const newSub = await SubscriberModel.create({
       email: req.body.email,
     });
-    sender("clement.lidar@gmail.com", "Nouvel abonné", req.body.email);
+    subscriber("clement.lidar@gmail.com", "Nouvel abonné", req.body.email);
     res.status(200).json({ newSub: newSub });
   } catch (error) {
     res.status(500).json(error);
