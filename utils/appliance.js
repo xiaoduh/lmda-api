@@ -12,7 +12,7 @@ const appliance = async (subject, email, phone, content) => {
 
     await transporter.sendMail({
       from: "no-reply lambda",
-      to: "clement.lidar@gmail.com",
+      to: "clement.lidar@gmail.com, abidimedamine@gmail.com",
       subject: "Vous avez une nouvelle candidature spontannée 🥳",
       html: `<body>
       <p>Bonjour 👋,<br><br></p>
