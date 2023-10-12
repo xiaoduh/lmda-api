@@ -12,8 +12,8 @@ const formMission = async (subject, email, phone, content) => {
 
     await transporter.sendMail({
       from: "no-reply lambda",
-      to: "clement.lidar@gmail.com",
-      subject: "Vous avez une nouvelle mission 🥳",
+      to: "clement.lidar@gmail.com, abidimedamine@gmail.com",
+      subject: "Vous avez un nouveau besoin 🥳",
       html: `<body>
       <p>Bonjour 👋,<br><br></p>
       <p>Vous avez une nouvelle mission :</p>
