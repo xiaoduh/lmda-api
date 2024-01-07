@@ -1,57 +1,117 @@
-const JobModel = require("../models/job.model");
-const ApplianceModel = require("../models/appliance.model");
-const applianceJob = require("../utils/applianceJob");
+const mongoose = require("mongoose");
+const Job = require("../models/job.model");
 
-module.exports.createJobOpen = async (req, res) => {
-  const {
-    title,
-    localisation,
-    tags,
-    expected_skills,
-    context,
-    missions,
-    technical_environment,
-  } = req.body;
-
+const createJob = async (req, res) => {
   try {
-    const newJob = await JobModel.create({
+    const {
       title,
-      localisation,
-      tags,
-      expected_skills,
+      short_desc,
       context,
+      localisation,
+      active,
+      salary,
+      daily_rate,
+      work_organisation,
       missions,
-      technical_environment,
+      technical_stack,
+      skills_required,
+      companyId,
+      slug,
+      meta_description,
+      experience_level,
+      job_type,
+    } = req.body;
+
+    const savedJob = await Job.create({
+      title,
+      short_desc,
+      context,
+      localisation,
+      active,
+      salary,
+      daily_rate,
+      work_organisation,
+      missions,
+      technical_stack,
+      skills_required,
+      companyId: mongoose.Types.ObjectId(companyId), // Convertir companyId en ObjectId
+      slug,
+      meta_description,
+      experience_level,
+      job_type,
     });
-    res.status(200).json(newJob);
+
+    res.status(201).json(savedJob);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
-module.exports.createApplianceJob = async (req, res) => {
+const getAllMyJobs = async (req, res) => {
+  const companyId = req.query.companyId;
   try {
-    const newApplianceEntry = await ApplianceModel.create({
-      jobId: req.body.jobId,
-      name: req.body.name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      motivation: req.body.motivation,
-    });
-    applianceJob(
-      req.body.jobId,
-      req.body.name,
-      req.body.email,
-      req.body.phone_number,
-      req.body.motivation
-    );
-    res.status(200).json({ newAppliance: newApplianceEntry });
+    const jobs = await Job.find({ companyId: companyId });
+
+    res.status(200).json(jobs);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
-module.exports.getAllJobs = async (req, res) => {
-  const data = await JobModel.find().sort({ createdAt: -1 });
-  res.status(200).json(data);
+const getJobById = async (req, res) => {
+  const jobId = req.params.id;
+
+  try {
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    res.status(200).json(job);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const updateJobById = async (req, res) => {
+  const jobId = req.params.id;
+  const updateFields = req.body;
+
+  try {
+    const updatedJob = await Job.findByIdAndUpdate(jobId, updateFields, {
+      new: true,
+    });
+
+    if (!updatedJob) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    res.status(200).json(updatedJob);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const deleteJobById = async (req, res) => {
+  const jobId = req.params.id;
+
+  try {
+    const deletedJob = await Job.findByIdAndDelete(jobId);
+
+    if (!deletedJob) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  createJob,
+  getAllMyJobs,
+  getJobById,
+  updateJobById,
+  deleteJobById,
 };
