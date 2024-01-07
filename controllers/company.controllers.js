@@ -1,4 +1,4 @@
-const Company = require("../models/company.Model");
+const Company = require("../models/company.model");
 
 // Contrôleur pour créer une nouvelle entreprise
 const createCompany = async (req, res) => {
